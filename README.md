@@ -1,5 +1,3 @@
-# API_Rest_contactos
-
 # Desing Document: API REST CONTACTOS
 
 ## 1. Descripcion
