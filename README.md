@@ -15,8 +15,8 @@ Para este ejemplo se utilizará el gestor de base de datos [SQLite3](https://www
 |--|--|--|--|--|
 |1|id_contacto|int|PRYMARY KEY|Llave primaria de la tabla|
 |2|nombre|varchar(100)|Not Null|Nombre del contacto|
-|3|primer_apellido|varchar(50)|Not Null|Primer Apellido del contacto|
-|4|segundo_apellido|varchar(50)|Not Null|Segundo Apellido del contacto|
+|3|p_apellido|varchar(50)|Not Null|Primer Apellido del contacto|
+|4|s_apellido|varchar(50)|Not Null|Segundo Apellido del contacto|
 |5|email|varchar(100)|Not Null|Email del contacto|
 |6|telefono|varchar(13)|Not Null|Telefono del contacto|
 
