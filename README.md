@@ -73,7 +73,7 @@ Endpoint para obtener todos los contactos por nombre
 |10|Response type|application/json|
 |11|Response|[{"id_contacto":int,"nombre":string,"apellido_paterno":string,"apellido_materno":string,"email":string,"telefono":string},{"id_contacto":int,"nombre":string,"apellido_paterno":string,"apellido_materno":string,"email":string,"telefono":string}]|
 |12|Curl|curl -X "GET" "http://localhost:8000/contactos?limit=10&offset=10&nombre={nombre}" -H "accept:application/json"|
-|13|Status Code (error)|432|
+|13|Status Code (error)|404|
 |14|Response Type (error)|application/json|
 |15|Response (error)|{"message":"Contacto no encontrado"}|
 |16|Status Code (error)|433|
@@ -100,7 +100,7 @@ Endpoint para editar los contactos por su id_contacto
 |13|Status Code (error)|432|
 |14|Response Type (error)|application/json|
 |15|Response (error)|{"message":"Contacto no encontrado"}|
-|16|Status Code (error)|434|
+|16|Status Code (error)|200|
 |17|Response Type (error)|application/json|
 |18|Response (error)|{"message":"Parametros vacios"}|
 
@@ -149,6 +149,6 @@ Endpoint para eliminar los contactos por su id_contacto
 |13|Status Code (error)|432|
 |14|Response Type (error)|application/json|
 |15|Response (error)|{"message":"Contacto no encontrado"}|
-|16|Status Code (error)|434|
+|16|Status Code (error)|202|
 |17|Response Type (error)|application/json|
 |18|Response (error)|{"message":"Parametro vacio"}|
