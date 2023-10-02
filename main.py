@@ -1,30 +1,66 @@
-
-import csv
-import json
-
 from fastapi import FastAPI
-
+import csv
+from pydantic import BaseModel
 
 app = FastAPI()
 
-@app.get("/v1/contactos")
+@app.get("/", status_code=200,
+    summary="Endpoint raiz",
+    description="Endpoint raiz de la API")
+
 def get_contactos():
-    # Define la lista para almacenar los datos del CSV en formato JSON
-    contactos_data = []
+    response = []
 
-    # Abre el archivo CSV (reemplaza 'contactos.csv' con la ruta de tu archivo CSV)
-    with open('contactos.csv', newline='') as csvfile:
-        # Lee el archivo CSV
-        reader = csv.DictReader(csvfile)
-        
-        # Itera a través de las filas del CSV y agrega cada fila como un diccionario a la lista
-        for row in reader:
-            contactos_data.append(row)
+    with open("contactos.csv", "r") as file:
+        reader = csv.DictReader(file, delimiter=",")
 
-    # Codifica los datos como JSON
-    contactos_json = json.dumps(contactos_data)
-
-    # Construye la respuesta con el JSON codificado
-    response = {"contactos": contactos_json}
+        for fila in reader:
+            response.append(fila)
 
     return response
+
+@app.get("/v1/contactos", status_code=298,
+    summary="Endpoint para visualizar datos",
+    description="Endpoint para visualizar datos")
+
+def get_contactos1():
+    response = []
+
+    with open("contactos.csv", "r") as file1, open("contactos_n.csv", "r") as file2:
+        reader1 = csv.DictReader(file1, delimiter=",")
+        reader2 = csv.DictReader(file2, delimiter=",")
+
+        for fila in reader1:
+            response.append(fila)
+
+        for fila in reader2:
+            response.append(fila)
+
+    return response
+
+class Contactos(BaseModel):
+    id_contacto: int
+    nombre: str
+    p_apellido: str
+    s_apellido: str
+    email: str
+    telefono: int
+
+@app.post("/v2/contactos", status_code=201,
+    summary="Endpoint para enviar datos",
+    description="Endpoint para enviar datos a la API")
+def post_contactos(contacto : Contactos):
+
+    with open("contactos_n.csv", "a", newline="") as file:
+        fieldnames = ["id_contacto", "nombre", "p_apellido", "s_apellido", "email", "telefono"]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+        id_contacto= input("Ingrese el Id del contacto: ")
+        nombre = input("Ingresa el Nombre: ")
+        p_apellido = input("Ingresa el Primer Apellido: ")
+        s_apellido = input("Ingresa el Segundo Apellido: ")
+        email = input("Ingresa el Email: ")
+        telefono = input("Ingresa el Teléfono: ")
+
+
+    return {"mensaje": "Datos de contacto agregados con éxito"}

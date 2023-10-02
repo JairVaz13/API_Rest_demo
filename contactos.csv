@@ -1,3 +1,3 @@
-nombre,email
-jair,jair@email.com
-amairani,amairani@emailcom
+id_contacto,nombre,p_apellido,s_apellido,email,telefono
+1,jair,vazquez,cordero,jair@email.com,7777777
+2,amairani,martines,monrroy,amairani@email.com,66666666
