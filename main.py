@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import csv
 from pydantic import BaseModel
+import requests 
 
 app = FastAPI()
 
@@ -46,7 +47,7 @@ class Contactos(BaseModel):
     email: str
     telefono: int
 
-@app.post("/v2/contactos", status_code=201,
+@app.post("/v1/contactos", status_code=201,
     summary="Endpoint para enviar datos",
     description="Endpoint para enviar datos a la API")
 def post_contactos(contacto : Contactos):
@@ -57,10 +58,10 @@ def post_contactos(contacto : Contactos):
 
         id_contacto= input("Ingrese el Id del contacto: ")
         nombre = input("Ingresa el Nombre: ")
-        p_apellido = input("Ingresa el Primer Apellido: ")
-        s_apellido = input("Ingresa el Segundo Apellido: ")
+        p_apellido = input("Ingresa el P _Apellido: ")
+        s_apellido = input("Ingresa el S_Apellido: ")
         email = input("Ingresa el Email: ")
         telefono = input("Ingresa el Teléfono: ")
 
 
-    return {"mensaje": "Datos de contacto agregados con éxito"}
+    return {"mensaje": "Datos de contacto con éxito"}
